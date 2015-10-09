@@ -1,0 +1,31 @@
+﻿* Ride sharing application
+* Data sets (Listing all possible applicable data sets)
+   * Fuel price reports (historical)
+      * http://publicservice.vermont.gov/publications/fuel_report
+   * gas prices (current)
+      * http://www.vermontgasprices.com/
+   * Ride sharing
+      * http://www.waytogovt.org/ (Pretty similar to discussions of the app we’ve been having)
+      * http://www.connectingcommuters.org/ 
+      * https://www.zimride.com/govermont (found this link through waytogovt)
+      * http://www.carsharevt.org/ (car sharing, kind of like a rental car)
+   * Traffic volume
+      * http://vtransplanning.vermont.gov/research/traffic/publications
+* Key goals
+   * Make points desirable
+   * Greater reduction in vehicle emissions means greater points
+* Features
+   * Profile
+   * Friend discovery
+   * Route based discovery
+      * input starting point and destination and app will find others with similar routes
+      * Use ride sharing locations defined by Vermont 
+   * Show cost savings on maintenance and gas
+   * Earn points when riding with others and when driving others around
+      * Bonuses for driving
+      * Bonuses for using the most fuel efficient cars
+      * More points for driving owners of bad fuel efficiency cars
+      * Bonus points for hybrid / eco friendly cars
+* Distinguishing features from others (zimride)
+   * Not only focus on CO2 emissions reduction, but cost savings
+   * Incentivize and create a game out of reducing emissions and finding the best way to do so

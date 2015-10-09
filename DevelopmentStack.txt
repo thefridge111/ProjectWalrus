@@ -1,0 +1,23 @@
+﻿* [Database] Postgres or MongoDB depending on our needs
+   * My preference is Postgres so we are sql based (most experienced)
+   * Performance should not be an issue
+* [Backend Application Server] Flask
+   * Minimalistic python web framework
+   * http://flask.pocoo.org/
+   * I already have experience with it, so it will be no problem
+   * Database Plugins
+      * Postgres - http://pypi.python.org/pypi/flask-sqlalchemy/
+      * Mongo - http://pypi.python.org/pypi/flask-mongoengine/
+* [Web server / Static File host / WSGI Proxy] Nginx
+   * self explanatory, basically a one time setup
+* [Front end]
+   * [Project Scaffolding] Ionic
+      * http://ionicframework.com/
+      * Ionic provides project scaffolding for a project using bower, grunt, and apache cordova (the secret sauce to deploying as mobile) https://cordova.apache.org/
+   * [MVC] Angular.js
+      * Built into ionic, but is the core framework for the app
+   * [Frontend Framework] Ionic
+      * Mobile-optimized html, css, and javascript. Looks kind of like ios 7 by default
+
+
+This stack will allow for us to deploy as a web app, and as mobile using the same code

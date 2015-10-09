@@ -1,0 +1,24 @@
+﻿1. Bootstrapping
+   1. In hackvt, scripts directory contains script for installing node and ionic
+   2. http://ionicframework.com/docs/guide/installation.html
+   3. Android SDK on ubuntu - http://samhassell.com/getting-ionic-framework-up-and-running-on-ubuntu-14-04/
+   4. USB Debugging in ubuntu 14.04
+      1. http://bigknol.com/setting-android-usb-debugging-in-ubuntu-14-04/
+      2. http://esausilva.com/2010/05/13/setting-up-adbusb-drivers-for-android-devices-in-linux-ubuntu/
+   1. Fuck android
+      1. http://askubuntu.com/questions/461729/ubuntu-is-not-detecting-my-android-device
+      2. http://stackoverflow.com/questions/12044162/android-adb-doesnt-work-at-ubuntu-in-vmware-workstation
+      3. http://askubuntu.com/questions/73491/no-such-file-or-directory-for-existing-executable
+      4. http://stackoverflow.com/questions/17963508/how-to-install-android-sdk-build-tools-on-the-command-line
+      5. http://stackoverflow.com/questions/21256866/libz-so-1-cannot-open-shared-object-file
+1. Structure
+   1. http://ionicframework.com/docs/concepts/structure.html
+   2. Angular tutorials
+      1. http://egghead.io/lessons/angularjs-binding
+1. UI
+   1. CSS Customization
+      1. http://learn.ionicframework.com/videos/sass/
+
+
+TODO
+* Don’t forget demo setup, mock data, etc.
