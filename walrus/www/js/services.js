@@ -78,6 +78,32 @@ angular.module('starter.services', [])
             }
         )
     };
+
+
+    dataFactory.doLogin = function (username){
+        return $http.post(url + loginEndpoint, {"username":username}).then(
+            function(value){
+                user_id = value.data.id;
+                console.log('user_id ' + user_id);
+                return user_id;
+            },
+            function(value){
+                return value;
+            }
+        )
+    };
+
+    dataFactory.getMyTrips = function (){
+        return $http.get(url + reservationEndpoint + "/" + user_id).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                console.log("error :" + value);
+                return value;
+            }
+        )
+    };
     
     return dataFactory;
 

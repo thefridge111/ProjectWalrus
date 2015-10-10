@@ -166,8 +166,6 @@ def create_reservation():
 
     reservation = model.TripReservation(user, scheduled_trip)
     user.trip_reservations.append(reservation)
-    db.session.commit()
-
 
     response = {
             'id': reservation.id
@@ -221,13 +219,26 @@ def confirm_reservation(reservationId):
     else:
         ntrip = sch_trip.trips[0]
 
-    emis_saved = 0
-    fuel_saved = 0
+    #todo choose best car
+
+    distance = vincenty((sch_trip.lat_start, sch_trip.long_start), (sch_trip.lat_end, sch_trip.long_end)).miles
+
+    passenger_car = user.cars[0]
+    if passenger_car is None:
+        emis_saved = 0
+        fuel_saved = 0
+    else:
+        emis_saved = passenger_car.emissions - (car.emissions / len(ntrip.trip_passengers))
+
+        passenger_car_gas = distance * passenger_car.mpg
+        driver_car_gas = distance * car.mpg
+
+        fuel_saved = passenger_car_gas - (driver_car_gas / len(ntrip.trip_passengers))
+
     npassenger = model.TripPassenger(ntrip, user, emis_saved, fuel_saved)
 
     ntrip.trip_passengers.append(npassenger)
     db.session.commit()
-
 
     response = {
             'emission_saved': emis_saved,
