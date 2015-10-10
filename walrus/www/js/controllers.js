@@ -166,10 +166,21 @@ angular.module('starter.controllers', [])
     //        if(!dataFactory.loggedIn()){
 //            $state.go('login');
 //        }
+//https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
+//AIzaSyCs-emmRiKamSgnHx_0a3aquHS96_1L7KA
+
 
         //TODO:Google Maps API Call
         dataFactory.postScheduled($scope.trip.lat_start, $scope.trip.long_start,
         $scope.trip.lat_end, $scope.trip.long_end, $scope.trip.date)
     }
+])
+
+.controller('ProfileAddCarCtrl', ['$scope', 'dataFactory', '$state',
+    function($scope, dataFactory, $state) {
+    //        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
+
 ])
 
