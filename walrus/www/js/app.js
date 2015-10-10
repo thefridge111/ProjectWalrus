@@ -59,18 +59,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
     .state('tab.my-trips-detail', {
-      url: '/mytrip/:tripId',
+      url: '/mytrips/:chatId',
       views: {
         'tab-my-trips': {
           templateUrl: 'templates/my-trips-detail.html',
@@ -87,7 +77,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'FindTripsCtrl'
       }
     }
-  });
+  })
+
+  .state('tab.leaderboard', {
+    url: '/leaderboard',
+    views: {
+      'tab-leaderboard': {
+        templateUrl: 'templates/tab-leaderboard.html',
+        controller: 'LeaderboardCtrl'
+      }
+    }
+  })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/profile');

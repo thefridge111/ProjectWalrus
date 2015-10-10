@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('MyTripsDetailsCtrl', function($scope, $stateParams, Chats) {
+.controller('MyTripsDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
@@ -29,4 +29,6 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
+.controller('LeaderboardCtrl', function($scope) {})
