@@ -25,6 +25,16 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {0}>'.format(self.username)
+    def to_json(self):
+        return {
+                    'id': self.id,
+                    'username': self.username,
+                    'first_name': self.first_name,
+                    'last_name': self.last_name,
+                    'email': self.email,
+                    'location': self.location
+                }
+
 
 
 class CarType(db.Model):
