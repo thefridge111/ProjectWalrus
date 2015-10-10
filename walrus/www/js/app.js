@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+//angular.module('starter', ['ionic'])
 //
 //.run(function($ionicPlatform) {
 //  $ionicPlatform.ready(function() {
@@ -19,7 +19,7 @@ angular.module('starter', ['ionic'])
 //})
 
 
-angular.module('ionicApp', ['ionic'])
+hackVT = angular.module('ionicApp', ['ionic'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -29,63 +29,38 @@ angular.module('ionicApp', ['ionic'])
       abstract: true,
       templateUrl: "templates/tabs.html"
     })
-    .state('tabs.home', {
-      url: "/home",
+    .state('tabs.profile', {
+      url: "/profile",
       views: {
-        'home-tab': {
-          templateUrl: "templates/home.html",
-          controller: 'HomeTabCtrl'
+        'profile-tab': {
+          templateUrl: "templates/profile.html",
+          controller: 'ProfileTabCtrl'
         }
       }
     })
-    .state('tabs.facts', {
-      url: "/facts",
+    .state('tabs.my_trips', {
+      url: "/my_trips",
       views: {
-        'home-tab': {
-          templateUrl: "templates/facts.html"
+        'my-trips-tab': {
+          templateUrl: "templates/tab/my_trips.html"
         }
       }
     })
-    .state('tabs.facts2', {
-      url: "/facts2",
+
+    .state('tabs.find_trips', {
+      url: "/find_trips",
       views: {
-        'home-tab': {
-          templateUrl: "templates/facts2.html"
-        }
-      }
-    })
-    .state('tabs.about', {
-      url: "/about",
-      views: {
-        'about-tab': {
-          templateUrl: "templates/about.html"
-        }
-      }
-    })
-    .state('tabs.navstack', {
-      url: "/navstack",
-      views: {
-        'about-tab': {
-          templateUrl: "templates/nav-stack.html"
-        }
-      }
-    })
-    .state('tabs.contact', {
-      url: "/contact",
-      views: {
-        'contact-tab': {
-          templateUrl: "templates/contact.html"
+        'find-trips-tab': {
+          templateUrl: "templates/tab/find_trips.html"
         }
       }
     });
 
 
-   $urlRouterProvider.otherwise("/tab/home");
+   $urlRouterProvider.otherwise("/tab/profile");
 
 })
 
-.controller('HomeTabCtrl', function($scope) {
-  console.log('HomeTabCtrl');
-});
+
 
 
