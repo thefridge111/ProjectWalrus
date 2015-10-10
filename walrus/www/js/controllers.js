@@ -85,6 +85,7 @@ angular.module('starter.controllers', [])
 
 .controller('MyTripsDetailCtrl',['$scope', '$stateParams', 'dataFactory', '$state', 
     function($scope, $stateParams, dataFactory, $state) {
+<<<<<<< HEAD
         $scope.data = {}
         if(!dataFactory.loggedIn()){
             $state.go('login');
@@ -97,28 +98,40 @@ angular.module('starter.controllers', [])
         )
 
 
+=======
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
+>>>>>>> 5c270cd1bdd1ed27ea34968be7809e980b088be9
     }])
 
 .controller('FindTripsDetailCtrl', ['$scope', '$stateParams', 'dataFactory', '$state',
     function($scope, $stateParams, dataFactory, $state) {
+<<<<<<< HEAD
         if(!dataFactory.loggedIn()){
             $state.go('login');
         }
+=======
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
+
+>>>>>>> 5c270cd1bdd1ed27ea34968be7809e980b088be9
     }])
 
 
 .controller('FindTripsCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
     }])
 
 .controller('LeaderboardCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
     
     }])
 

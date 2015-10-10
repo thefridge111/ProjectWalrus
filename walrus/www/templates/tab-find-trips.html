@@ -1,9 +1,54 @@
 <ion-view view-title="Tripfinder">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div class="row">
+      <div class="col">
+        <label class="item item-input">
+          <input type="text" placeholder="Start Address">
+        </label>
+      </div>
+
+      <div class="col">
+        <label class="item item-input">
+          <input type="text" placeholder="Destination Address">
+        </label>
+      </div>
+
+      <div class="col">
+        <label class="item item-input">
+          <span class="input-label">Date</span>
+          <input type="date">
+        </label>
+      </div>
+
+      <div class="col">
+        <label class="item item-input">
+          <span class="input-label">Date</span>
+          <input type="date">
+        </label>
+      </div>
+
+      <div class="col">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Trips Within:
+          </div>
+          <select>
+            <option selected>Not Selected</option>
+            <option>5 Miles</option>
+            <option>10 Miles</option>
+            <option>15 Miles</option>
+            <option>20 Miles</option>
+            <option>25 Miles</option>
+            <option>30 Miles</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="col">
+        <button class="button button-outline button-balanced button-align-right" >Add New Trip</button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
+
+
