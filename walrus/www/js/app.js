@@ -31,24 +31,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
     .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+        url: '/tab',
+        abstract: true,
+        templateUrl: 'templates/tabs.html'
+      })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.profile', {
-    url: '/profile',
-    views: {
-      'tab-profile': {
-        templateUrl: 'templates/tab-profile.html',
-        controller: 'profileCtrl'
-      }
+    .state('tab.profile', {
+        url: '/profile', 
+        views: {
+          'tab-profile': {
+            templateUrl: 'templates/tab-profile.html',
+            controller: 'profileCtrl'
+          }
     }
   })
+  
 
   .state('tab.mytrips', {
       url: '/mytrips',
@@ -88,8 +88,77 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  // setup an abstract state for the tabs directive
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/profile');
+  $urlRouterProvider.otherwise('/login');
 
 });
+
+
+/*
+ *
+    .state('tab', {
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'templates/tabs.html'
+  })
+
+  // Each tab has its own nav history stack:
+
+  .state('tab.profile', {
+    url: '/profile',
+    views: {
+      'tab-profile': {
+        templateUrl: 'templates/tab-profile.html',
+        controller: 'profileCtrl'
+      }
+    }
+  })
+  
+
+  .state('tab.mytrips', {
+      url: '/mytrips',
+      views: {
+        'tab-my-trips': {
+          templateUrl: 'templates/tab-my-trips.html',
+          controller: 'MyTripsCtrl'
+        }
+      }
+    })
+    .state('tab.my-trips-detail', {
+      url: '/mytrips/:chatId',
+      views: {
+        'tab-my-trips': {
+          templateUrl: 'templates/my-trips-detail.html',
+          controller: 'MyTripsDetailCtrl'
+        }
+      }
+    })
+
+  .state('tab.findtrips', {
+    url: '/findtrips',
+    views: {
+      'tab-find-trips': {
+        templateUrl: 'templates/tab-find-trips.html',
+        controller: 'FindTripsCtrl'
+      }
+    }
+  })
+
+  .state('tab.leaderboard', {
+    url: '/leaderboard',
+    views: {
+      'tab-leaderboard': {
+        templateUrl: 'templates/tab-leaderboard.html',
+        controller: 'LeaderboardCtrl'
+      }
+    }
+  })
+  
+  */

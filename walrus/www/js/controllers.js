@@ -32,3 +32,30 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LeaderboardCtrl', function($scope) {})
+
+.controller('LoginCtrl', ['$scope', 'dataFactory', '$ionicPopup', '$state', 
+    function($scope, dataFactory, $ionicPopup, $state) {
+        $scope.data = {};
+        $scope.login = function() {
+            if($scope.data.password == null){
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Login failed!',
+                    template: 'Please check your credentials!'
+                });
+                return;
+            }
+            dataFactory.doLogin($scope.data.username).then(function(data){
+                if(data == -1){
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Login failed!',
+                        template: 'Please check your credentials!'
+                    });
+                }
+                else{
+                    $state.go('tab.profile');
+                }
+            });
+        }
+        
+}])
+

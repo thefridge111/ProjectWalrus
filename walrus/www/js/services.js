@@ -47,4 +47,39 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+
+.factory('dataFactory', ['$http', function($http) {
+    var dataFactory = {};
+    var urlHost = 'http://192.168.23.129:5000';
+    var urlBase = '/api/v1.0';
+    var url = urlHost + urlBase
+
+    var user_id;
+
+    var profileEndpoint = '/profile';
+    var loginEndpoint = '/login';
+    var carEndpoint = '/car';
+    var scheduledTripEndpoint = '/scheduledtrip';
+    var reservationEndpoint = '/reservation';
+    var confirmEndpoint = '/confirm';
+    var statsEndpoint = '/stats'
+
+    dataFactory.doLogin = function (username){
+        return $http.post(url + loginEndpoint, {"username":username}).then(
+            function(value){
+                user_id = value.data.id;
+                console.log('user_id ' + user_id);
+                return user_id;
+            },
+            function(value){
+                return value;
+            }
+        )
+    };
+    
+    return dataFactory;
+
+    
+}]);
