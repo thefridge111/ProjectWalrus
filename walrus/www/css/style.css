@@ -28,3 +28,7 @@ canvas.graphs {
     align: center;
     display: block;
 }
+
+button.button-align-right {
+    float: right;
+}

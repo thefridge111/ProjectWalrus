@@ -2,9 +2,9 @@ angular.module('starter.controllers', [])
 
 .controller('profileCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
 
         var co2data = {
             labels: ["CO2 Saved"],
@@ -61,9 +61,9 @@ angular.module('starter.controllers', [])
 
 .controller('MyTripsCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
 
       $scope.data = {}
 
@@ -83,31 +83,31 @@ angular.module('starter.controllers', [])
 
 .controller('FindTripsDetailCtrl', ['$scope', '$stateParams', 'dataFactory', '$state',
     function($scope, $stateParams, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
     }])
 
 .controller('MyTripsDetailCtrl',['$scope', '$stateParams', 'dataFactory', '$state', 
     function($scope, $stateParams, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
 
     }])
 
 .controller('FindTripsCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
     }])
 
 .controller('LeaderboardCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
     
     }])
 
