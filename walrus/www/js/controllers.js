@@ -258,5 +258,18 @@ angular.module('starter.controllers', [])
 //            $state.go('login');
         }
 
+        $scope.data={}
+
+        dataFactory.postCar($scope.data.car_make, $scope.data.car_model, $scope.data.car_year,
+        $scope.data.car_mpg, $scope.data.car_emissions).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+    }
+
 ])
 
