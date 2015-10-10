@@ -81,6 +81,7 @@ angular.module('starter.services', [])
                 return value;
             }
         )
+        
     };
 
     dataFactory.postScheduled = function (lat_start, long_start, lat_end, long_end, date){
