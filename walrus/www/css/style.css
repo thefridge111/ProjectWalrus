@@ -32,3 +32,12 @@ canvas.graphs {
 button.button-align-right {
     float: right;
 }
+
+img.img-align {
+    margin-left: auto;
+    margin-right: auto;
+    width: 279px;
+    height: 197px;
+    align: center;
+    display: block;
+}
