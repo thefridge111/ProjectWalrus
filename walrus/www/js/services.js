@@ -66,6 +66,10 @@ angular.module('starter.services', [])
     var confirmEndpoint = '/confirm';
     var statsEndpoint = '/stats'
 
+    dataFactory.loggedIn = function(){
+        return !(user_id == null || user_id == -1);
+    };
+
     dataFactory.doLogin = function (username){
         return $http.post(url + loginEndpoint, {"username":username}).then(
             function(value){
@@ -80,8 +84,35 @@ angular.module('starter.services', [])
     };
 
 
-    dataFactory.doLogin = function (username){
-        return $http.post(url + loginEndpoint, {"username":username}).then(
+    dataFactory.getScheduled = function (lat_start, long_start, lat_end, long_end, start_time, end_time, distance){
+        params = {
+            lat_start: lat_start, 
+            long_start: long_start, 
+            lat_end: lat_end, 
+            long_end: long_end, 
+            start_time: start_time, 
+            end_time : end_time, 
+            distance: distance, 
+        }
+        return $http.get(url + scheduledTripEndpoint, params).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+    };
+
+    dataFactory.postCar = function (make, model, year, mpg, emissions){
+        data = {
+            make:make,
+            model:model,
+            year:year,
+            mpg:mpg,
+            emissions:emissions
+        }
+        return $http.post(url + carEndpoint + "/" + user_id , data).then(
             function(value){
                 user_id = value.data.id;
                 console.log('user_id ' + user_id);
@@ -91,6 +122,30 @@ angular.module('starter.services', [])
                 return value;
             }
         )
+    };
+
+
+    dataFactory.getStats = function (){
+        return $http.get(url + statsEndpoint + "/" + user_id).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+    };
+
+    dataFactory.getProfile = function(){
+        return $http.get(url + profileEndpoint + "/" + user_id).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+
     };
 
     dataFactory.getMyTrips = function (){

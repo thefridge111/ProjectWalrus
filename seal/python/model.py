@@ -32,7 +32,8 @@ class User(db.Model):
                     'first_name': self.first_name,
                     'last_name': self.last_name,
                     'email': self.email,
-                    'location': self.location
+                    'location': self.location,
+                    'cars':[item.to_json() for item in self.cars]
                 }
 
 
