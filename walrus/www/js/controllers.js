@@ -2,9 +2,9 @@ angular.module('starter.controllers', [])
 
 .controller('profileCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-//        if(!dataFactory.loggedIn()){
-//            $state.go('login');
-//        }
+        if(!dataFactory.loggedIn()){
+            $state.go('login');
+        }
 
         var co2data = {
             labels: ["CO2 Saved"],
@@ -61,17 +61,19 @@ angular.module('starter.controllers', [])
 
 .controller('MyTripsCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-//        if(!dataFactory.loggedIn()){
-//            $state.go('login');
-//        }
+        if(!dataFactory.loggedIn()){
+            $state.go('login');
+        }
 
       $scope.data = {}
 
       $scope.getMyTrips = function(){
         dataFactory.getMyTrips().then(
             function(data){
-               $scope.data.mytrips = data.data.results;
-               console.log($scope.data.mytrips)
+                if(data.data != null){
+                   $scope.data.mytrips = data.data.results;
+                   console.log($scope.data.mytrips)
+                }
 
             });
       };
@@ -81,20 +83,42 @@ angular.module('starter.controllers', [])
 
     }])
 
-.controller('FindTripsDetailCtrl', ['$scope', '$stateParams', 'dataFactory', '$state',
-    function($scope, $stateParams, dataFactory, $state) {
-//        if(!dataFactory.loggedIn()){
-//            $state.go('login');
-//        }
-    }])
-
 .controller('MyTripsDetailCtrl',['$scope', '$stateParams', 'dataFactory', '$state', 
     function($scope, $stateParams, dataFactory, $state) {
+<<<<<<< HEAD
+        $scope.data = {}
+        if(!dataFactory.loggedIn()){
+            $state.go('login');
+        }
+        dataFactory.getTrip($stateParams.tripId).then(
+            function(data){
+                $scope.data.trip = data.data;
+                console.log(data.data);
+            }
+        )
+
+
+=======
+//        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
+>>>>>>> 5c270cd1bdd1ed27ea34968be7809e980b088be9
+    }])
+
+.controller('FindTripsDetailCtrl', ['$scope', '$stateParams', 'dataFactory', '$state',
+    function($scope, $stateParams, dataFactory, $state) {
+<<<<<<< HEAD
+        if(!dataFactory.loggedIn()){
+            $state.go('login');
+        }
+=======
 //        if(!dataFactory.loggedIn()){
 //            $state.go('login');
 //        }
 
+>>>>>>> 5c270cd1bdd1ed27ea34968be7809e980b088be9
     }])
+
 
 .controller('FindTripsCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {

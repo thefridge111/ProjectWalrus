@@ -203,12 +203,24 @@ angular.module('starter.services', [])
                 return value;
             },
             function(value){
-                console.log("error : " + value);
+                console.log("error :" + value);
                 return value;
             }
         )
     };
 
+    dataFactory.getTrip = function (res_id){
+        return $http.get(url + reservationEndpoint + "/id/" + res_id ).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                console.log("error :" + value);
+                return value;
+            }
+        )
+    };
+    
     return dataFactory;
 
     
