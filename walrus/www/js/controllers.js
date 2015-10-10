@@ -67,6 +67,9 @@ angular.module('starter.controllers', [])
                 var gasChart = new Chart(ctx).Bar(gasdata);
             }
         );
+        $scope.add_car = function(){
+            $state.go('tab.profile-add-car');
+        }
 
     }])
 
@@ -254,21 +257,24 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileAddCarCtrl', ['$scope', 'dataFactory', '$state',
     function($scope, dataFactory, $state) {
-    //        if(!dataFactory.loggedIn()){
+    // if(!dataFactory.loggedIn()){
 //            $state.go('login');
+//      }
+
+        $scope.data = {}
+
+        $scope.submit = function(){
+            
+            dataFactory.postCar($scope.data.car_make, $scope.data.car_model, $scope.data.car_year,
+            $scope.data.car_mpg, $scope.data.car_emissions).then(
+                function(value){
+                    return value;
+                },
+                function(value){
+                    return value;
+                }
+            )
         }
-
-        $scope.data={}
-
-        dataFactory.postCar($scope.data.car_make, $scope.data.car_model, $scope.data.car_year,
-        $scope.data.car_mpg, $scope.data.car_emissions).then(
-            function(value){
-                return value;
-            },
-            function(value){
-                return value;
-            }
-        )
     }
 
 ])
