@@ -1,6 +1,58 @@
 angular.module('starter.controllers', [])
 
-.controller('profileCtrl', function($scope) {})
+.controller('profileCtrl', function($scope) {
+    var co2data = {
+        labels: ["CO2 Saved"],
+        datasets: [
+        {
+            label: "CO2 Dataset",
+            fillColor: "#000000",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "#000000",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [81]
+        }
+        ]
+    };
+
+    var gasdata = {
+        labels: ["Gal. Saved"],
+        datasets: [
+        {
+            label: "Gas Dataset",
+            fillColor: "#FF9900",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "#FF9900",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [65]
+        }
+        ]
+    };
+
+    var moneydata = {
+        labels: ["$$ Saved"],
+        datasets: [
+        {
+            label: "Money Dataset",
+            fillColor: "#00CC00",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "#00CC00",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [35]
+        }
+        ]
+    };
+
+    var ctx = document.getElementById("money").getContext("2d");
+    var moneyChart = new Chart(ctx).Bar(moneydata);
+
+    var ctx = document.getElementById("co2").getContext("2d");
+    var co2Chart = new Chart(ctx).Bar(co2data);
+
+    var ctx = document.getElementById("gas").getContext("2d");
+    var gasChart = new Chart(ctx).Bar(gasdata);
+
+})
 
 .controller('MyTripsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called

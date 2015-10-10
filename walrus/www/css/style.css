@@ -3,9 +3,8 @@ div.points {
     font-size: 80px;
     margin: auto;
     width: 30%;
-    align: center;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
     text-align: center;
     font-weight: bold;
 }
@@ -17,6 +16,15 @@ div.text-balanced {
 div.banner-text {
     text-align: center;
     font-size: 50px;
-    padding-top: 30px;
+    padding-top: 15px;
     padding-bottom: 50px;
+}
+
+canvas.graphs {
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 400px;
+    align: center;
+    display: block;
 }

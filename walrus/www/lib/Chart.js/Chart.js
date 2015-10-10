@@ -97,7 +97,7 @@
 			scaleBeginAtZero: false,
 
 			// String - Scale label font declaration for the scale label
-			scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+			scaleFontFamily: "'Century Gothic', 'Century Gothic', 'Arial', sans-serif",
 
 			// Number - Scale label font size in pixels
 			scaleFontSize: 12,
@@ -106,7 +106,7 @@
 			scaleFontStyle: "normal",
 
 			// String - Scale label font colour
-			scaleFontColor: "#666",
+			scaleFontColor: "#009900",
 
 			// Boolean - whether or not the chart should be responsive and resize when the browser does.
 			responsive: false,
