@@ -1,8 +1,8 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
     <!-- TODO: ##### Replace Username Place Holder w/ AngJS ##### -->
-    <div class="text-balanced banner-text">Username Place Holder</div>
-    <div class="points text-balanced">Points</div>
+    <div class="text-balanced banner-text">{{$scope.data.name}}</div>
+    <div class="points text-balanced">{{$scope.data.points}}</div>
     <div align="center">
     <table width=50%>
       <tr>
@@ -13,13 +13,5 @@
     </table>
     </div>
 
-    <!--<div class="list card">-->
-      <!--<div class="item item-divider">Upcoming</div>-->
-      <!--<div class="item item-body">-->
-        <!--<div>-->
-          <!--You have <b>29</b> meetings on your calendar tomorrow.-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
   </ion-content>
 </ion-view>

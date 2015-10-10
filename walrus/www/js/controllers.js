@@ -5,8 +5,15 @@ angular.module('starter.controllers', [])
         if(!dataFactory.loggedIn()){
             $state.go('login');
         }
+        $scope.data = {}
+        dataFactory.getProfile().then(
+            function(data){
+                $scope.data.name = data.data.name;
+            });
+
         dataFactory.getStats().then(
             function(data){
+                $scope.data.points = data.emission_saved
 
                 var co2data = {
                     labels: ["CO2 Saved"],
