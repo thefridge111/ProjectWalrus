@@ -99,12 +99,12 @@ angular.module('starter.services', [])
                 return value;
             },
             function(value){
-                console.log("error :" + value);
+                console.log("error : " + value);
                 return value;
             }
         )
     };
-    
+
     return dataFactory;
 
     
