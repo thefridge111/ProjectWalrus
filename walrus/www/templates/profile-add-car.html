@@ -1,81 +1,86 @@
-<div class="list">
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Make
-    </div>
-    <select data-ng-model="data.car_make">
-      <option value="ford">Ford</option>
-      <option value="chevy">Chevy</option>
-      <option value="toyota">Toyota</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="dodge">Dodge</option>
-    </select>
-  </label>
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Model
-    </div>
-    <select data-ng-model="data.car_model">
-      <option value="charger">Charger</option>
-      <option value="amgslk">AMG SLK</option>
-      <option value="prius">Prius</option>
-      <option value="fusion">Fusion</option>
-      <option value="suburban">Suburban</option>
-    </select>
-  </label>
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Year
-    </div>
-    <select data-ng-model="data.car_year">
-      <option value="2000">2000</option>
-      <option value="2012">2012</option>
-      <option value="1965">1965</option>
-      <option value="2015">2015</option>
-      <optoin value="2005">2005</optoin>
-    </select>
-  </label>
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Color
-    </div>
-    <select data-ng-model="data.car_color">
-      <option value="blue">Blue</option>
-      <option value="green">Green</option>
-      <option value="red">Red</option>
-      <option value="white">White</option>
-      <option value="black">Black</option>
-      <option value="yellow">Yellow</option>
-    </select>
-  </label>
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Emissions
-    </div>
-    <select data-ng-model="data.car_emissions">
-      <option value="13">13</option>
-      <option value="24">24</option>
-      <option value="2">2</option>
-      <option value="100">100</option>
-      <option value="50">50</option>
-      <option value="78">78</option>
-    </select>
-  </label>
-  <label class="item item-input item-select">
-    <div class="input-label">
-      MPG
-    </div>
-    <select data-ng-model="data.car_mpg">
-      <option value="17">17</option>
-      <option value="24">24</option>
-      <option value="63">63</option>
-      <option value="12">12</option>
-      <option value="5">5</option>
-      <option value="37">37</option>
-    </select>
-  </label>
 
-  <button class="button button-full button-balanced" ng-click="submit()">
-    Submit
-  </button>
-</div>
+<ion-view view-title="Add Trip">
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Make
+        </div>
+        <select data-ng-model="data.car_make">
+          <option value="ford">Ford</option>
+          <option value="chevy">Chevy</option>
+          <option value="toyota">Toyota</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="dodge">Dodge</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Model
+        </div>
+        <select data-ng-model="data.car_model">
+          <option value="charger">Charger</option>
+          <option value="amgslk">AMG SLK</option>
+          <option value="prius">Prius</option>
+          <option value="fusion">Fusion</option>
+          <option value="suburban">Suburban</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Year
+        </div>
+        <select data-ng-model="data.car_year">
+          <option value="2000">2000</option>
+          <option value="2012">2012</option>
+          <option value="1965">1965</option>
+          <option value="2015">2015</option>
+          <optoin value="2005">2005</optoin>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Color
+        </div>
+        <select data-ng-model="data.car_color">
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="red">Red</option>
+          <option value="white">White</option>
+          <option value="black">Black</option>
+          <option value="yellow">Yellow</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Emissions
+        </div>
+        <select data-ng-model="data.car_emissions">
+          <option value="13">13</option>
+          <option value="24">24</option>
+          <option value="2">2</option>
+          <option value="100">100</option>
+          <option value="50">50</option>
+          <option value="78">78</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          MPG
+        </div>
+        <select data-ng-model="data.car_mpg">
+          <option value="17">17</option>
+          <option value="24">24</option>
+          <option value="63">63</option>
+          <option value="12">12</option>
+          <option value="5">5</option>
+          <option value="37">37</option>
+        </select>
+      </label>
+
+      <button class="button button-full button-balanced" ng-click="submit()">
+        Submit
+      </button>
+    </div>
+  </ion-content>
+</ion-view>
