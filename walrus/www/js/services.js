@@ -142,6 +142,16 @@ angular.module('starter.services', [])
         )
     };
 
+    dataFactory.getCarsForTrip = function (reservationId){
+        return $http.get(url + carEndpoint + "/reserve/" + reservationId).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+    }
 
     dataFactory.getStats = function (){
         return $http.get(url + statsEndpoint + "/" + user_id).then(
@@ -182,7 +192,7 @@ angular.module('starter.services', [])
 
     };
 
-    dataFactory.postConfirm = function(reservation_id){
+    dataFactory.postConfirm = function(reservation_id, car_id){
         data = {
             car_id: car_id
         }
