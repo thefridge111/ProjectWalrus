@@ -198,6 +198,11 @@ def get_reservations_for_user(userId):
             }
     return flask.jsonify(**response)
 
+@app.route(URL_PREFIX + '/reservation/id/<int:reservationId>', methods=['GET'])
+def get_reservations_by_id(reservationId):
+    reservation = model.TripReservation.query.filter_by(id=reservationId).first()
+    return flask.jsonify(**reservation.to_json())
+
 
 @app.route(URL_PREFIX + '/confirm/<int:reservationId>', methods=['POST'])
 def confirm_reservation(reservationId):

@@ -70,13 +70,31 @@ angular.module('starter.controllers', [])
       $scope.getMyTrips = function(){
         dataFactory.getMyTrips().then(
             function(data){
-               $scope.data.mytrips = data.data.results;
-               console.log($scope.data.mytrips)
+                if(data.data != null){
+                   $scope.data.mytrips = data.data.results;
+                   console.log($scope.data.mytrips)
+                }
 
             });
       };
 
       $scope.getMyTrips();
+
+
+    }])
+
+.controller('MyTripsDetailCtrl',['$scope', '$stateParams', 'dataFactory', '$state', 
+    function($scope, $stateParams, dataFactory, $state) {
+        $scope.data = {}
+        if(!dataFactory.loggedIn()){
+            $state.go('login');
+        }
+        dataFactory.getTrip($stateParams.tripId).then(
+            function(data){
+                $scope.data.trip = data.data;
+                console.log(data.data);
+            }
+        )
 
 
     }])
@@ -88,13 +106,6 @@ angular.module('starter.controllers', [])
         }
     }])
 
-.controller('MyTripsDetailCtrl',['$scope', '$stateParams', 'dataFactory', '$state', 
-    function($scope, $stateParams, dataFactory, $state) {
-        if(!dataFactory.loggedIn()){
-            $state.go('login');
-        }
-
-    }])
 
 .controller('FindTripsCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {

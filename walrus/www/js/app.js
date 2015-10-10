@@ -60,7 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     .state('tab.my-trips-detail', {
-      url: '/mytrips/:chatId',
+      url: '/mytrips/:tripId',
       views: {
         'tab-my-trips': {
           templateUrl: 'templates/my-trips-detail.html',
