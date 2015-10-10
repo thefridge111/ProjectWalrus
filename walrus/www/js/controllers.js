@@ -54,20 +54,23 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MyTripsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('MyTripsCtrl', ['$scope', 'dataFactory', function($scope, dataFactory) {
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+  $scope.data = {}
+
+  $scope.getMyTrips = function(){
+    dataFactory.getMyTrips().then(
+        function(data){
+           $scope.data.mytrips = data.data.results;
+           console.log($scope.data.mytrips)
+
+        });
   };
-})
+
+  $scope.getMyTrips();
+
+
+}])
 
 .controller('FindTripsDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
@@ -97,7 +100,7 @@ angular.module('starter.controllers', [])
                 return;
             }
             dataFactory.doLogin($scope.data.username).then(function(data){
-                if(data == -1){
+                if(data == -1 || data == null){
                     var alertPopup = $ionicPopup.alert({
                         title: 'Login failed!',
                         template: 'Please check your credentials!'
