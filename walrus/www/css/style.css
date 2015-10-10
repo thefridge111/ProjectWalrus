@@ -33,6 +33,11 @@ button.button-align-right {
     float: right;
 }
 
+button.button-padding {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 img.img-align {
     margin-left: auto;
     margin-right: auto;
@@ -40,4 +45,6 @@ img.img-align {
     height: 197px;
     align: center;
     display: block;
+    padding-top: 100px;
+    padding-bottom: 300px;
 }
