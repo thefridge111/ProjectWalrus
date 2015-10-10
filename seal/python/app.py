@@ -296,7 +296,7 @@ def leaderboard():
         user.emis_sum = emis_sum
     def getKey(user):
         return user.emis_sum
-    users = sorted(users, user, reverse=True)
+    users = sorted(users, key=getKey, reverse=True)
 
     results = []
     for item in users:

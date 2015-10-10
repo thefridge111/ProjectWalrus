@@ -55,8 +55,9 @@
 
     <ion-list>
     <ion-item class="" ng-repeat="trip in data.schtrips" type="item-text-wrap"> 
-        <h2>{{scheduledtrip.user.username}}</h2>
-        <h2>{{scheduledtrip.date}}</h2>
+        <h2>{{trip.username}}</h2>
+        <h2>{{trip.date}}</h2>
+        <h2>{{trip.path}}</h2>
       </ion-item>
     </ion-list>
 

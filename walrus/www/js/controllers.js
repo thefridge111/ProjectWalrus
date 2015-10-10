@@ -8,12 +8,15 @@ angular.module('starter.controllers', [])
         $scope.data = {}
         dataFactory.getProfile().then(
             function(data){
-                $scope.data.name = data.data.name;
+                console.log(data);
+                $scope.data.name = data.data.username;
+                console.log($scope.data.name);
             });
 
         dataFactory.getStats().then(
             function(data){
-                $scope.data.points = data.emission_saved
+                console.log(data);
+                $scope.data.points = data.data.emission_saved;
 
                 var co2data = {
                     labels: ["CO2 Saved"],
@@ -24,7 +27,7 @@ angular.module('starter.controllers', [])
                         strokeColor: "rgba(220,220,220,0.8)",
                         highlightFill: "#000000",
                         highlightStroke: "rgba(220,220,220,1)",
-                        data: [data.emission_saved]
+                        data: [data.data.emission_saved]
                     }
                     ]
                 };
@@ -38,7 +41,7 @@ angular.module('starter.controllers', [])
                         strokeColor: "rgba(220,220,220,0.8)",
                         highlightFill: "#FF9900",
                         highlightStroke: "rgba(220,220,220,1)",
-                        data: [data.fuel_saved]
+                        data: [data.data.fuel_saved]
                     }
                     ]
                 };
@@ -52,7 +55,7 @@ angular.module('starter.controllers', [])
                         strokeColor: "rgba(220,220,220,0.8)",
                         highlightFill: "#00CC00",
                         highlightStroke: "rgba(220,220,220,1)",
-                        data: [data.fuel_saved * 2.409]
+                        data: [data.data.fuel_saved * 2.409]
                     }
                     ]
                 };
@@ -106,6 +109,7 @@ angular.module('starter.controllers', [])
         $scope.updateData = function(){
             dataFactory.getTrip($stateParams.tripId).then(
                 function(data){
+                    console.log(data.data)
                     $scope.data.trip = data.data;
                 }
             );
@@ -147,6 +151,43 @@ angular.module('starter.controllers', [])
         if(!dataFactory.loggedIn()){
             $state.go('login');
         }
+
+        $scope.data = {}
+        $scope.data.schtrips = [
+            {
+                username: 'jhartley',
+                date: '2015-10-11 12:20:00',
+                path: 'Northfield, VT -> Burlington, VT'
+
+            },
+            {
+                username: 'jhartley',
+                date: '2015-10-11 17:30:00',
+                path: 'Burlington, VT -> Northfield, VT'
+            },
+            {
+                username: 'jhartley',
+                date: '2015-10-12 12:20:00',
+                path: 'Northfield, VT -> Burlington, VT'
+            },
+            {
+                username: 'jhartley',
+                date: '2015-10-12 17:30:00',
+                path: 'Burlington, VT -> Northfield, VT'
+            },
+            {
+                username: 'wperry',
+                date: '2015-11-01 08:30:00',
+                path: 'Hardwick, VT -> Stowe, VT'
+            },
+            {
+                username: 'wperry',
+                date: '2015-10-23 10:30:00',
+                path: 'Woodstock, VT -> Essex, VT'
+            }
+
+        ]
+        
 
         $scope.query = function(){
 
