@@ -2,18 +2,18 @@
   <h3>Trip Start</h3>
   <label class="item item-input item-stacked-label">
     <span class="input-label">Street Address</span>
-    <input type="text" placeholder=" ">
+    <input type="text" placeholder=" " data-ng-model="data.start_street_address">
   </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label">City/Town</span>
-    <input type="text" placeholder=" ">
+    <input type="text" placeholder=" " data-ng-model="data.start_city">
   </label>
   <label class="item item-input item-select">
     <div class="input-label">
       State
     </div>
-    <select>
-      <option>Blue</option>
+    <select data-ng-model="data.start_state>
+      <option data-ng-repeat="state in data.states">{{state.name}}</option>
     </select>
   </label>
   <label class="item item-input">
@@ -31,18 +31,18 @@
   <h3>Trip End</h3>
   <label class="item item-input item-stacked-label">
     <span class="input-label">Street Address</span>
-    <input type="text" placeholder=" ">
+    <input type="text" placeholder=" " data-ng-model="data.end_street_address">
   </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label">City/Town</span>
-    <input type="text" placeholder=" ">
+    <input type="text" placeholder=" " data-ng-model="data.end_city">
   </label>
   <label class="item item-input item-select">
     <div class="input-label">
       State
     </div>
-    <select>
-      <option>Blue</option>
+    <select data-ng-model="data.end_state">
+      <option data-ng-repeat="state in data.states">{{state.name}}</option>
     </select>
   </label>
   <label class="item item-input">
