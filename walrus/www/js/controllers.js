@@ -214,7 +214,7 @@ angular.module('starter.controllers', [])
                     },
                     function(value){
                         return value;
-                    }
+                    },
                 )
             },
             function(value){
@@ -225,11 +225,24 @@ angular.module('starter.controllers', [])
     }
 ])
 
-.controller('ProfileAddCarCtrl', ['$scope', 'dataFactory', '$state',
-    function($scope, dataFactory, $state) {
-    //        if(!dataFactory.loggedIn()){
-//            $state.go('login');
+.controller('ProfileAddCarCtrl', ['$scope', 'dataFactory', '$state', '$http',
+    function($scope, dataFactory, $state, $http) {
+            if(!dataFactory.loggedIn()){
+           $state.go('login');
         }
+
+        $scope.data={}
+
+        dataFactory.postCar($scope.data.car_make, $scope.data.car_model, $scope.data.car_year,
+        $scope.data.car_mpg, $scope.data.car_emissions).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+    }
 
 ])
 
