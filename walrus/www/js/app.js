@@ -40,22 +40,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.profile', {
+    url: '/profile',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-profile': {
+        templateUrl: 'templates/tab-profile.html',
+        controller: 'profileCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.mytrips', {
+      url: '/mytrips',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-my-trips': {
+          templateUrl: 'templates/tab-my-trips.html',
+          controller: 'MyTripsCtrl'
         }
       }
     })
@@ -69,17 +69,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+    .state('tab.my-trips-detail', {
+      url: '/mytrip/:tripId',
+      views: {
+        'tab-my-trips': {
+          templateUrl: 'templates/my-trips-detail.html',
+          controller: 'MyTripsDetailCtrl'
+        }
+      }
+    })
+
+  .state('tab.findtrips', {
+    url: '/findtrips',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-find-trips': {
+        templateUrl: 'templates/tab-find-trips.html',
+        controller: 'FindTripsCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/profile');
 
 });
