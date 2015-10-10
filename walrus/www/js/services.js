@@ -230,6 +230,18 @@ angular.module('starter.services', [])
             }
         )
     };
+
+    dataFactory.getLeaderboard = function (){
+        return $http.get(url + "/leaderboard" ).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                console.log("error :" + value);
+                return value;
+            }
+        )
+    };
     
     return dataFactory;
 

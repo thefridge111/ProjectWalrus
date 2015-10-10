@@ -144,6 +144,15 @@ angular.module('starter.controllers', [])
         if(!dataFactory.loggedIn()){
             $state.go('login');
         }
+        $scope.data = {};
+
+        dataFactory.getLeaderboard().then(
+            function(data){
+                $scope.data.leaderboard= data.data.results;
+                console.log($scope.data.leaderboard);
+            }
+        );
+
     
     }])
 
