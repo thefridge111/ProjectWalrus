@@ -1,6 +1,7 @@
 import flask
 from flask import Flask, request
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.cors import CORS
 import logging
 import json
 from geopy.distance import vincenty
@@ -8,6 +9,7 @@ from datetime import datetime
 
 app = Flask('seal')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+CORS(app)
 db = SQLAlchemy(app)
 
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
