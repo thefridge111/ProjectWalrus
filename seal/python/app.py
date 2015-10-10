@@ -1,13 +1,161 @@
-from flask import Flask
+import flask
+from flask import Flask, request
 from flask.ext.sqlalchemy import SQLAlchemy
 import logging
-
-#logging.basicConfig(level=logging.DEBUG)
-#t@github.com:thefridge111/ProjectWalrus.gitlogging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
+import json
+from geopy.distance import vincenty
+from datetime import datetime
 
 app = Flask('seal')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
+DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
+VERSION = 'v1.0'
+URL_PREFIX = '/api/{0}'.format(VERSION)
+
 import model
+
+
+
+@app.route(URL_PREFIX + '/profile', methods=['GET'])
+def get_profiles():
+    response = {
+            'results': ([item.to_json() for item in model.User.query.all()])
+            }
+    return flask.jsonify(**response)
+
+@app.route(URL_PREFIX + '/profile/<int:profile_id>', methods=['GET'])
+def get_profile(profile_id):
+    user = model.User.query.filter_by(id=profile_id).first()
+    if user is None:
+        return "{}"
+    return flask.jsonify(**user.to_json())
+
+@app.route(URL_PREFIX + '/profile', methods=['POST'])
+def create_profile():
+    if not request.json:
+        abort(400)
+
+    r = request.json
+    new_user = model.User(r['username'], r['first_name'], r['last_name'], r['email'], r['location'])
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    response = {
+                'id': new_user.id
+                }
+
+    return flask.jsonify(**response)
+
+@app.route(URL_PREFIX + '/login', methods=['POST'])
+def login_user():
+    if not request.json:
+        abort(400)
+
+    r = request.json
+    nuser = model.User.query.filter_by(username=r["username"]).first()
+    if nuser is None:
+        id = -1
+    else:
+        id = nuser.id
+
+    response = {
+                'id': id
+                }
+
+    return flask.jsonify(**response)
+
+@app.route(URL_PREFIX + '/car/<int:profile_id>', methods=['GET'])
+def get_cars(profile_id):
+    user = model.User.query.filter_by(id=profile_id).first()
+    if user is None:
+        cars = []
+    else:
+        cars = user.cars
+    response = {
+                'results': [item.to_json() for item in cars]
+                }
+
+    return flask.jsonify(**response)
+
+@app.route(URL_PREFIX + '/car/<int:profile_id>', methods=['POST'])
+def add_car(profile_id):
+    if not request.json:
+        abort(400)
+
+    r = request.json
+
+    user = model.User.query.filter_by(id=profile_id).first()
+    new_car = model.Car(user, r['make'], r['model'], r['year'],r['mpg'],r['emissions'])
+    user.cars.append(new_car)
+    db.session.commit()
+
+    return '{}'
+
+@app.route(URL_PREFIX + '/scheduledtrip', methods=['POST'])
+def create_scheduled_trip():
+    if not request.json:
+        abort(400)
+
+    r = request.json
+
+    date = datetime.strptime(r["date"], DATE_FORMAT)
+
+    user = model.User.query.filter_by(id=r["user_id"]).first()
+    new_trip = model.ScheduledTrip(user, r["lat_start"], r["long_start"], r["lat_end"], r["long_end"], date)
+
+    db.session.add(new_trip)
+    db.session.commit()
+
+    response = {
+            'id': new_trip.id
+            }
+    return flask.jsonify(**response)
+
+
+@app.route(URL_PREFIX + '/scheduledtrip', methods=['GET'])
+def get_scheduled_trips():
+
+    lat_start = float(request.args.get("lat_start"))
+    long_start = float(request.args.get("long_start"))
+    lat_end = float(request.args.get("lat_end"))
+    long_end = float(request.args.get("long_end"))
+
+    start_time = datetime.strptime(request.args.get("start_time"), DATE_FORMAT)
+    end_time = datetime.strptime(request.args.get("end_time"), DATE_FORMAT)
+
+    distance = float(request.args.get("distance"))
+
+    scheduled_trips = model.ScheduledTrip.query.filter(db.and_(model.ScheduledTrip.date <= end_time, model.ScheduledTrip.date >= start_time))
+
+    trips = []
+
+    for trip in scheduled_trips:
+        start_distance = vincenty((lat_start, long_start), (trip.lat_start, trip.long_start)).miles
+        start_good = start_distance < distance
+        end_distance = vincenty((lat_end, long_end), (trip.lat_end, trip.long_end)).miles
+        end_good =  end_distance < distance
+        print (lat_start, long_start), (trip.lat_start, trip.long_start)
+        print "{0} {1}".format(start_distance, end_distance)
+        print start_good, end_good
+        if start_good and end_good:
+            trips.append(trip.to_json())
+
+    response = {
+            'results': trips
+            }
+    return flask.jsonify(**response)
+
+@app.route(URL_PREFIX + '/reservation', methods=['POST'])
+def create_reservation():
+    pass
+
+
+if __name__ == '__main__':
+    from app import db
+    db.create_all()
+    app.run(host='0.0.0.0', debug=True)
+
 

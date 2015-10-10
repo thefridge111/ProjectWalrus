@@ -25,37 +25,48 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {0}>'.format(self.username)
+    def to_json(self):
+        return {
+                    'id': self.id,
+                    'username': self.username,
+                    'first_name': self.first_name,
+                    'last_name': self.last_name,
+                    'email': self.email,
+                    'location': self.location
+                }
 
 
-class CarType(db.Model):
+class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     make = db.Column(db.String(80))
     model = db.Column(db.String(80))
     year = db.Column(db.Integer)
     mpg = db.Column(db.Float)
     emissions = db.Column(db.Float)
 
-    cars = db.relationship('Car', backref='cartype')
+    trips = db.relationship('Trip', backref='car')
 
-    def __init__(self, make, model, year, mpg, emissions):
+    def __init__(self, user, make, model, year, mpg, emissions):
+        self.user = user
         self.make = make
         self.model = model
         self.year = year
         self.mpg = mpg
         self.emissions = emissions
-
-class Car(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    car_id = db.Column(db.Integer, db.ForeignKey('car_type.id'))
-
-    trips = db.relationship('Trip', backref='car')
-
-    def __init__(self, user, cartype):
-        self.user = user
-        self.cartype = cartype
     def __repr__(self):
-        return "<Car userid:{0} carid:{1}>".format(self.user_id, self.car_id)
+        return "<Car userid:{0} carid:{1}>".format(self.user_id, self.car_type_id)
+    def to_json(self):
+        print self.emissions
+        return {
+                    'id' : self.id,
+                    'user': self.user.to_json(),
+                    'make': self.make,
+                    'model': self.model,
+                    'year': self.year,
+                    'mpg': self.mpg,
+                    'emissions': self.emissions,
+                }
 
 class ScheduledTrip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -70,29 +81,63 @@ class ScheduledTrip(db.Model):
     trip_reservations = db.relationship('TripReservation', backref='scheduledtrip')
     trips = db.relationship('Trip', backref='scheduledtrip')
 
-    def __init__(self, user_id, lat_start, long_start, lat_end, long_end, date):
-        self.user_id = user_id
+    def __init__(self, user, lat_start, long_start, lat_end, long_end, date):
+        self.user = user
         self.lat_start = lat_start
         self.long_start = long_start
         self.lat_end = lat_end
         self.long_end = long_end
+        self.date = date
     def __repr__(self):
         return '<ScheduledTrip {0}>'.format(self.id)
+    def to_json(self):
+        return {
+                    'id' : self.id,
+                    'user': self.user.to_json(),
+                    'lat_start': self.lat_start,
+                    'long_start': self.long_start,
+                    'lat_end': self.lat_end,
+                    'long_end': self.long_end,
+                    'date': self.date,
+                }
 
 class TripReservation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     sch_trip_id = db.Column(db.Integer, db.ForeignKey('scheduled_trip.id'))
 
-    def __init__(self, user_id, sch_trip_id):
-        self.user_id = user_id
-        self.sch_trip_id = sch_trip_id
+    def __init__(self, user, scheduledtrip):
+        self.user = user
+        self.scheduledtrip = scheduledtrip
+
+    def to_json(self):
+        return {
+                    'id' : self.id,
+                    'user': self.user.to_json(),
+                    'scheduledtrip': self.scheduledtrip.to_json(),
+                }
 class TripPassenger(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     trip_id = db.Column(db.Integer, db.ForeignKey('trip.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     emissions_saved = db.Column(db.Float)
     fuel_saved = db.Column(db.Float)
+
+    def __init__(self, trip, user, emissions_saved, fuel_saved):
+        self.trip = trip
+        self.user = user
+        self.emissions_saved = emissions_saved
+        self.fuel_saved = fuel_saved
+
+    def to_json(self):
+        return {
+                    'id' : self.id,
+                    'user': self.user.to_json(),
+                    'trip': self.trip.to_json(),
+                    'emissions_saved': self.emissions_saved,
+                    'fuel_saved': self.fuel_saved
+                }
+
 
 class Trip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -101,3 +146,13 @@ class Trip(db.Model):
 
     trip_passengers = db.relationship('TripPassenger', backref='trip')
 
+    def __init__(self, sch_trip, car):
+        self.scheduledtrip = sch_trip
+        self.car = car
+
+    def to_json(self):
+        return {
+                    'id' : self.id,
+                    'scheduledtrip': self.scheduledtrip.to_json(),
+                    'car': self.car.to_json(),
+                }
