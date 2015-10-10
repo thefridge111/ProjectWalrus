@@ -83,6 +83,24 @@ angular.module('starter.services', [])
         )
     };
 
+    dataFactory.postScheduled = function (lat_start, long_start, lat_end, long_end, date){
+        data = {
+            lat_start: lat_start, 
+            long_start: long_start, 
+            lat_end: lat_end, 
+            long_end: long_end, 
+            date: date,
+            user_id: user_id
+        }
+        return $http.post(url + scheduledTripEndpoint, data).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+    };
 
     dataFactory.getScheduled = function (lat_start, long_start, lat_end, long_end, start_time, end_time, distance){
         params = {
@@ -138,6 +156,37 @@ angular.module('starter.services', [])
 
     dataFactory.getProfile = function(){
         return $http.get(url + profileEndpoint + "/" + user_id).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+
+    };
+    
+    dataFactory.postReservation = function(sch_trip_id){
+        data = {
+            user_id: user_id,
+            sch_trip_id: sch_trip_id
+        }
+        return $http.post(url + reservationEndpoint, data).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                return value;
+            }
+        )
+
+    };
+
+    dataFactory.postConfirm = function(reservation_id){
+        data = {
+            car_id: car_id
+        }
+        return $http.post(url + confirmEndpoint + "/" + reservation_id, data).then(
             function(value){
                 return value;
             },
