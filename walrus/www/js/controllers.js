@@ -137,3 +137,15 @@ angular.module('starter.controllers', [])
         
 }])
 
+.controller('FindTripAddTripCtrl', ['$scope', 'dataFactory', '$state',
+    function($scope, dataFactory, $state) {
+    //        if(!dataFactory.loggedIn()){
+//            $state.go('login');
+//        }
+
+        //TODO:Google Maps API Call
+        dataFactory.postScheduled($scope.trip.lat_start, $scope.trip.long_start,
+        $scope.trip.lat_end, $scope.trip.long_end, $scope.trip.date)
+    }
+])
+

@@ -78,6 +78,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+    .state('tab.find-trips-add-trip', {
+      url: '/findtrips/addtrip',
+      views: {
+        'tab-find-trips': {
+          templateUrl: 'templates/find-trips-add-trip.html',
+          controller: 'FindTripAddTripCtrl'
+        }
+      }
+    })
 
   .state('tab.leaderboard', {
     url: '/leaderboard',
@@ -101,64 +110,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 });
 
 
-/*
- *
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
 
-  // Each tab has its own nav history stack:
-
-  .state('tab.profile', {
-    url: '/profile',
-    views: {
-      'tab-profile': {
-        templateUrl: 'templates/tab-profile.html',
-        controller: 'profileCtrl'
-      }
-    }
-  })
-  
-
-  .state('tab.mytrips', {
-      url: '/mytrips',
-      views: {
-        'tab-my-trips': {
-          templateUrl: 'templates/tab-my-trips.html',
-          controller: 'MyTripsCtrl'
-        }
-      }
-    })
-    .state('tab.my-trips-detail', {
-      url: '/mytrips/:chatId',
-      views: {
-        'tab-my-trips': {
-          templateUrl: 'templates/my-trips-detail.html',
-          controller: 'MyTripsDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.findtrips', {
-    url: '/findtrips',
-    views: {
-      'tab-find-trips': {
-        templateUrl: 'templates/tab-find-trips.html',
-        controller: 'FindTripsCtrl'
-      }
-    }
-  })
-
-  .state('tab.leaderboard', {
-    url: '/leaderboard',
-    views: {
-      'tab-leaderboard': {
-        templateUrl: 'templates/tab-leaderboard.html',
-        controller: 'LeaderboardCtrl'
-      }
-    }
-  })
-  
-  */
