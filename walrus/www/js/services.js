@@ -81,6 +81,7 @@ angular.module('starter.services', [])
                 return value;
             }
         )
+        
     };
 
     dataFactory.postScheduled = function (lat_start, long_start, lat_end, long_end, date){
@@ -221,6 +222,18 @@ angular.module('starter.services', [])
 
     dataFactory.getTrip = function (res_id){
         return $http.get(url + reservationEndpoint + "/id/" + res_id ).then(
+            function(value){
+                return value;
+            },
+            function(value){
+                console.log("error :" + value);
+                return value;
+            }
+        )
+    };
+
+    dataFactory.getLeaderboard = function (){
+        return $http.get(url + "/leaderboard" ).then(
             function(value){
                 return value;
             },

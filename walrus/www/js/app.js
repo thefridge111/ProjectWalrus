@@ -46,8 +46,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           'tab-profile': {
             templateUrl: 'templates/tab-profile.html',
             controller: 'profileCtrl'
-          }
+        }
     }
+  })
+
+  .state('tab.profile-add-car', {
+      url: '/profile/addcar',
+      views: {
+        'tab-profile': {
+          templateUrl: 'templates/profile-add-car.html',
+          controller: 'ProfileAddCarCtrl'
+        }
+      }
   })
   
 
@@ -85,6 +95,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         'tab-find-trips': {
           templateUrl: 'templates/find-trips-add-trip.html',
           controller: 'FindTripAddTripCtrl'
+        }
+      }
+    })
+    .state('tab.find-trip-detail', {
+      url: '/findtrips/:tripId',
+      views: {
+        'tab-find-trips': {
+          templateUrl: 'templates/find-trips-detail.html',
+          controller: 'FindTripsDetailCtrl'
         }
       }
     })

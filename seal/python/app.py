@@ -286,6 +286,27 @@ def stats(userId):
             }
     return flask.jsonify(**response)
 
+@app.route(URL_PREFIX + '/leaderboard/', methods=['GET'])
+def leaderboard():
+    users = model.User.query.all()
+    for user in users:
+        emis_sum = 0
+        for trippass in user.trip_passengers:
+            emis_sum += trippass.emissions_saved
+        user.emis_sum = emis_sum
+    def getKey(user):
+        return user.emis_sum
+    users = sorted(users, key=getKey, reverse=True)
+
+    results = []
+    for item in users:
+        n_item = item.to_json()
+        n_item["emis_sum"] = item.emis_sum
+        results.append(n_item)
+    response = {
+            'results': results
+            }
+    return flask.jsonify(**response)
 
 
 if __name__ == '__main__':

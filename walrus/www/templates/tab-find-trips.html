@@ -45,9 +45,22 @@
       </div>
 
       <div class="col">
-        <button class="button button-outline button-balanced button-align-right" href="#/tab/findtrips/addtrip">Add New Trip</button>
+        <button class="button button-outline button-balanced button-align-right" ng-click="query()">Query</button>
+      </div>
+
+      <div class="col">
+        <button class="button button-outline button-balanced button-align-right" ng-click="new()">Add New Trip</button>
       </div>
     </div>
+
+    <ion-list>
+    <ion-item class="" ng-repeat="trip in data.schtrips" type="item-text-wrap"> 
+        <h2>{{trip.username}}</h2>
+        <h2>{{trip.date}}</h2>
+        <h2>{{trip.path}}</h2>
+      </ion-item>
+    </ion-list>
+
   </ion-content>
 </ion-view>
 

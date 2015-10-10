@@ -1,9 +1,11 @@
 <ion-view view-title="Leaderboard">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Leaderboard
-    </ion-toggle>
+      <ion-item class="" ng-repeat="entry in data.leaderboard" type="item-text-wrap">
+        <h2>{{entry.username}}</h2>
+        <h2>{{entry.emis_sum}}</h2>
+      </ion-item>
     </ion-list>
+  </ion-content>
   </ion-content>
 </ion-view>
