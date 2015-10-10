@@ -5,6 +5,14 @@
       <p>Long0: {{data.trip.scheduledtrip.long_start}}</p>
       <p>Lat1: {{data.trip.scheduledtrip.lat_end}}</p>
       <p>Long1: {{data.trip.scheduledtrip.long_end}}</p>
-        <button class ="button button-block button-balanced" ng-click="submit()">Confirm</button>
+      <label class="item item-input item-select">
+            <div class="input-label">
+                Car
+            </div>
+            <select name="cars" data-ng-model='data.selected_car'>
+                <option data-ng-repeat="car in data.cars" data-ng-bind-html="makeName(car.make,car.model,car.year)" value = "{{car.id}}">
+            </select>
+        </label>
+      <button class ="button button-block button-balanced" ng-click="submit()">Confirm</button>
   </ion-content>
 </ion-view>

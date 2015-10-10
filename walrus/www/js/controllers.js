@@ -5,57 +5,61 @@ angular.module('starter.controllers', [])
         if(!dataFactory.loggedIn()){
             $state.go('login');
         }
+        dataFactory.getStats().then(
+            function(data){
 
-        var co2data = {
-            labels: ["CO2 Saved"],
-            datasets: [
-            {
-                label: "CO2 Dataset",
-                fillColor: "#000000",
-                strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "#000000",
-                highlightStroke: "rgba(220,220,220,1)",
-                data: [81]
+                var co2data = {
+                    labels: ["CO2 Saved"],
+                    datasets: [
+                    {
+                        label: "CO2 Dataset",
+                        fillColor: "#000000",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "#000000",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: [data.emission_saved]
+                    }
+                    ]
+                };
+
+                var gasdata = {
+                    labels: ["Gal. Saved"],
+                    datasets: [
+                    {
+                        label: "Gas Dataset",
+                        fillColor: "#FF9900",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "#FF9900",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: [data.fuel_saved]
+                    }
+                    ]
+                };
+
+                var moneydata = {
+                    labels: ["$ Saved"],
+                    datasets: [
+                    {
+                        label: "Money Dataset",
+                        fillColor: "#00CC00",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "#00CC00",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: [data.fuel_saved * 2.409]
+                    }
+                    ]
+                };
+
+                var ctx = document.getElementById("money").getContext("2d");
+                var moneyChart = new Chart(ctx).Bar(moneydata);
+
+                var ctx = document.getElementById("co2").getContext("2d");
+                var co2Chart = new Chart(ctx).Bar(co2data);
+
+                var ctx = document.getElementById("gas").getContext("2d");
+                var gasChart = new Chart(ctx).Bar(gasdata);
             }
-            ]
-        };
-
-        var gasdata = {
-            labels: ["Gal. Saved"],
-            datasets: [
-            {
-                label: "Gas Dataset",
-                fillColor: "#FF9900",
-                strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "#FF9900",
-                highlightStroke: "rgba(220,220,220,1)",
-                data: [65]
-            }
-            ]
-        };
-
-        var moneydata = {
-            labels: ["$$ Saved"],
-            datasets: [
-            {
-                label: "Money Dataset",
-                fillColor: "#00CC00",
-                strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "#00CC00",
-                highlightStroke: "rgba(220,220,220,1)",
-                data: [35]
-            }
-            ]
-        };
-
-        var ctx = document.getElementById("money").getContext("2d");
-        var moneyChart = new Chart(ctx).Bar(moneydata);
-
-        var ctx = document.getElementById("co2").getContext("2d");
-        var co2Chart = new Chart(ctx).Bar(co2data);
-
-        var ctx = document.getElementById("gas").getContext("2d");
-        var gasChart = new Chart(ctx).Bar(gasdata);
+        );
 
     }])
 
@@ -85,53 +89,61 @@ angular.module('starter.controllers', [])
 
 .controller('MyTripsDetailCtrl',['$scope', '$stateParams', 'dataFactory', '$state', 
     function($scope, $stateParams, dataFactory, $state) {
-<<<<<<< HEAD
         $scope.data = {}
         if(!dataFactory.loggedIn()){
             $state.go('login');
         }
-        dataFactory.getTrip($stateParams.tripId).then(
+        $scope.updateData = function(){
+            dataFactory.getTrip($stateParams.tripId).then(
+                function(data){
+                    $scope.data.trip = data.data;
+                }
+            );
+
+        }
+        dataFactory.getCarsForTrip($stateParams.tripId).then(
             function(data){
-                $scope.data.trip = data.data;
-                console.log(data.data);
+                $scope.data.cars = data.data.results;
+                console.log('Cars');
+                console.log($scope.data.cars);
             }
-        )
+        );
 
+        $scope.submit = function(){
+            dataFactory.postConfirm($scope.data.trip.id, $scope.data.selected_car).then(
+                function(data){
+                    $scope.updateData;           
+                    $state.go('tab.mytrips');
+                }
+            );
+        };
 
-=======
-//        if(!dataFactory.loggedIn()){
-//            $state.go('login');
-//        }
->>>>>>> 5c270cd1bdd1ed27ea34968be7809e980b088be9
+        $scope.makeName = function(a, b, c){
+            return a + ' ' + b + ' ' + c;
+        }
     }])
 
 .controller('FindTripsDetailCtrl', ['$scope', '$stateParams', 'dataFactory', '$state',
     function($scope, $stateParams, dataFactory, $state) {
-<<<<<<< HEAD
         if(!dataFactory.loggedIn()){
             $state.go('login');
         }
-=======
-//        if(!dataFactory.loggedIn()){
-//            $state.go('login');
-//        }
 
->>>>>>> 5c270cd1bdd1ed27ea34968be7809e980b088be9
     }])
 
 
 .controller('FindTripsCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-//        if(!dataFactory.loggedIn()){
-//            $state.go('login');
-//        }
+        if(!dataFactory.loggedIn()){
+            $state.go('login');
+        }
     }])
 
 .controller('LeaderboardCtrl', ['$scope', 'dataFactory', '$state', 
     function($scope, dataFactory, $state) {
-//        if(!dataFactory.loggedIn()){
-//            $state.go('login');
-//        }
+        if(!dataFactory.loggedIn()){
+            $state.go('login');
+        }
     
     }])
 

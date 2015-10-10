@@ -69,6 +69,25 @@ def login_user():
 
     return flask.jsonify(**response)
 
+
+@app.route(URL_PREFIX + '/car/reserve/<int:reservation_id>', methods=['GET'])
+def get_cars_for_reservation(reservation_id):
+    reservation = model.TripReservation.query.filter_by(id=reservation_id).first()
+
+    if reservation is None:
+        cars = []
+    else:
+        other_reserve = model.TripReservation.query.filter_by(sch_trip_id=reservation.sch_trip_id)
+        cars = []
+        for reserve in other_reserve:
+            cars += reserve.user.cars
+
+    response = {
+                'results': [item.to_json() for item in cars]
+                }
+
+    return flask.jsonify(**response)
+
 @app.route(URL_PREFIX + '/car/<int:profile_id>', methods=['GET'])
 def get_cars(profile_id):
     user = model.User.query.filter_by(id=profile_id).first()
@@ -233,12 +252,12 @@ def confirm_reservation(reservationId):
         emis_saved = 0
         fuel_saved = 0
     else:
-        emis_saved = passenger_car.emissions - (car.emissions / len(ntrip.trip_passengers))
+        emis_saved = passenger_car.emissions - (car.emissions / len(sch_trip.trip_reservations))
 
         passenger_car_gas = distance * passenger_car.mpg
         driver_car_gas = distance * car.mpg
 
-        fuel_saved = passenger_car_gas - (driver_car_gas / len(ntrip.trip_passengers))
+        fuel_saved = passenger_car_gas - (driver_car_gas / len(sch_trip.trip_reservations))
 
     npassenger = model.TripPassenger(ntrip, user, emis_saved, fuel_saved)
 
